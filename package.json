@@ -1,6 +1,6 @@
 {
   "name": "@juandardilag/ddd-domain-layer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "DDD Domain Layer for NodeJS",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

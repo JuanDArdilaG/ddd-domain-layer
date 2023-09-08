@@ -7,7 +7,7 @@ import { Repository } from "./Repository";
 export abstract class StorableAggregateRoot extends AggregateRoot {
   constructor(
     _id: IdentifierValueObject<string>,
-    private _repo: Repository<StorableAggregateRoot>
+    private _repo: Repository<AggregateRoot>
   ) {
     super(_id);
   }
@@ -20,11 +20,11 @@ export abstract class StorableAggregateRoot extends AggregateRoot {
     await this._repo.updateOne(this);
   }
 
-  async getAll(): Promise<StorableAggregateRoot[]> {
+  async getAll(): Promise<AggregateRoot[]> {
     return await this._repo.getAll();
   }
 
-  async get(): Promise<StorableAggregateRoot> {
+  async get(): Promise<AggregateRoot> {
     return await this._repo.getByID(this._id);
   }
 }

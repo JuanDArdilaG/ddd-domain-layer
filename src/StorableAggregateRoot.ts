@@ -1,6 +1,8 @@
-import { Repository } from "../Repository";
-import { AggregateRoot } from "./AggregateRoot";
-import { IdentifierValueObject } from "@juandardilag/value-objects";
+import {
+  AggregateRoot,
+  IdentifierValueObject,
+} from "@juandardilag/value-objects";
+import { Repository } from "./Repository";
 
 export abstract class StorableAggregateRoot extends AggregateRoot {
   constructor(

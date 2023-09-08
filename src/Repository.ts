@@ -1,5 +1,4 @@
-import { IIdentifier } from "@juandardilag/value-objects";
-import { AggregateRoot } from "./AggregateRoot/AggregateRoot";
+import { AggregateRoot, IIdentifier } from "@juandardilag/value-objects";
 
 export interface Repository<T extends AggregateRoot> {
   persist(aggregateRoot: T): Promise<void>;

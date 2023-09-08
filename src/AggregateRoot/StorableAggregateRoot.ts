@@ -4,7 +4,7 @@ import { IdentifierValueObject } from "@juandardilag/value-objects";
 
 export abstract class StorableAggregateRoot extends AggregateRoot {
   constructor(
-    _id: IdentifierValueObject,
+    _id: IdentifierValueObject<string>,
     private _repo: Repository<StorableAggregateRoot>
   ) {
     super(_id);

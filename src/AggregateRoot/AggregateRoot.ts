@@ -4,15 +4,15 @@ import { IdentifierValueObject } from "@juandardilag/value-objects";
 export abstract class AggregateRoot {
   private domainEvents: Array<DomainEvent>;
 
-  constructor(protected _id: IdentifierValueObject) {
+  constructor(protected _id: IdentifierValueObject<string>) {
     this.domainEvents = [];
   }
 
-  get id(): IdentifierValueObject {
+  get id(): IdentifierValueObject<string> {
     return this._id;
   }
 
-  set id(id: IdentifierValueObject) {
+  set id(id: IdentifierValueObject<string>) {
     this._id = id;
   }
 

@@ -1,4 +1,4 @@
-import { AggregateRoot, IIdentifier } from "@juandardilag/value-objects";
+import { AggregateRoot, Identifier } from "@juandardilag/value-objects";
 
 export interface Repository<T extends AggregateRoot>
   extends CreatorRepository<T>,
@@ -12,7 +12,7 @@ export interface CreatorRepository<T extends AggregateRoot> {
 
 export interface ReaderRepository<T extends AggregateRoot> {
   getAll(): Promise<T[]>;
-  getByID(id: IIdentifier<string | number>): Promise<T>;
+  getByID(id: Identifier<string | number>): Promise<T>;
 }
 
 export interface UpdaterRepository<T extends AggregateRoot> {

@@ -1,13 +1,13 @@
 {
   "name": "@juandardilag/ddd-domain-layer",
-  "version": "1.1.0-alpha.10",
+  "version": "1.1.0-alpha.11",
   "description": "DDD Domain Layer for NodeJS",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "tsc": "tsc",
     "prepublish": "cti create -n ./src && npx rimraf dist/ && tsc",
-    "pub": "npm i && git add -A && git commit --amend --no-edit && npm publish --access public"
+    "pub": "npm i && git add -A && git commit --amend --no-edit && git push && npm publish --access public"
   },
   "keywords": [],
   "author": "",

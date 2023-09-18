@@ -10,13 +10,10 @@ describe("InMemoryRepository", () => {
   it("should getBy key", async () => {
     const res = await repo.getBy("value", "test");
 
-    expect(res).toHaveLength(1);
-    expect(res[0].value).toBe("test");
+    expect(res.value).toBe("test");
   });
 
   it("should get empty getBy key", async () => {
-    const res = await repo.getBy("value", "test2");
-
-    expect(res).toHaveLength(0);
+    expect(repo.getBy("value", "test2")).rejects.toThrowError();
   });
 });

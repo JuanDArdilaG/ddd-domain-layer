@@ -14,8 +14,10 @@ export class InMemoryRepository<T extends AggregateRoot>
     return this._repo;
   }
 
-  async getBy(key: string, value: any): Promise<T[]> {
-    return this._repo.filter((i) => i.toPrimitives()[key] === value);
+  async getBy(key: string, value: any): Promise<T> {
+    const item = this._repo.find((i) => i.toPrimitives()[key] === value);
+    if (!item) throw new Error("Item not found");
+    return item;
   }
 
   async getByID(id: Identifier<string | number>): Promise<T> {

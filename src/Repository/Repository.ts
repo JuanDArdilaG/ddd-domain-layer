@@ -13,6 +13,7 @@ export interface CreatorRepository<T extends AggregateRoot> {
 export interface ReaderRepository<T extends AggregateRoot> {
   getAll(): Promise<T[]>;
   getByID(id: Identifier<string | number>): Promise<T>;
+  getBy(key: string, value: any): Promise<T[]>;
 }
 
 export interface UpdaterRepository<T extends AggregateRoot> {

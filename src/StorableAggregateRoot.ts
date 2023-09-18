@@ -11,4 +11,12 @@ export abstract class StorableAggregateRoot extends AggregateRoot {
   ) {
     super(_id);
   }
+
+  async persist() {
+    await this.repo.persist(this);
+  }
+
+  async update() {
+    await this.repo.updateOne(this);
+  }
 }

@@ -6,8 +6,8 @@ export class InMemoryRepository<T extends AggregateRoot>
 {
   protected _repo: T[] = [];
 
-  async deleteOne(item: T): Promise<void> {
-    this._repo = this._repo.filter((i) => i !== item);
+  async deleteOne(id: Identifier<string | number>): Promise<void> {
+    this._repo = this._repo.filter((i) => i.id.valueOf() === id.valueOf());
   }
 
   async getAll(): Promise<T[]> {
@@ -20,7 +20,7 @@ export class InMemoryRepository<T extends AggregateRoot>
     return item;
   }
 
-  async getByID(id: Identifier<string | number>): Promise<T> {
+  async get(id: Identifier<string | number>): Promise<T> {
     const item = this._repo.find((i) => i.id === id);
     if (!item) throw new Error("Item not found");
     return item;
@@ -31,15 +31,15 @@ export class InMemoryRepository<T extends AggregateRoot>
   }
 
   async updateOne(item: T): Promise<void> {
-    let id = -1;
+    let _id = 0;
     const find = this._repo.find((i, idx) => {
-      if (i.id === item.id) {
-        id = idx;
+      if (i.id.valueOf() === item.id.valueOf()) {
+        _id = idx;
         return true;
       }
       return false;
     });
     if (!find) throw new Error("Item not found");
-    this._repo[id] = item;
+    this._repo[_id] = item;
   }
 }

@@ -28,7 +28,7 @@ export class InMemoryRepository<T extends AggregateRoot>
   }
 
   async get(id: Identifier<string>): Promise<T> {
-    const item = this._repo.find((i) => i.id === id);
+    const item = this._repo.find((i) => i.id === id.valueOf());
     if (!item)
       throw new ItemNotFoundException(
         this._example.constructor.name,

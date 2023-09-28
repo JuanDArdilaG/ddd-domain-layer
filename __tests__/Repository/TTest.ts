@@ -1,16 +1,18 @@
 import { AggregateRoot, UUIDValueObject } from "@juandardilag/value-objects";
 
 export class TTest extends AggregateRoot {
-  value: string;
-  other: number;
-  constructor() {
+  constructor(readonly value: string, readonly other: number) {
     super(UUIDValueObject.random());
-    this.value = "test";
-    this.other = 1;
   }
-  fromPrimitives(_: any): AggregateRoot {
-    throw new Error("Method not implemented.");
+
+  static empty(): TTest {
+    return new TTest("", 0);
   }
+
+  fromPrimitives(body: any): TTest {
+    return new TTest(body.value as string, body.other as number);
+  }
+
   toPrimitives() {
     return {
       value: this.value,

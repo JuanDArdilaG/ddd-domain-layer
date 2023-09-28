@@ -2,9 +2,9 @@ import { InMemoryRepository } from "../../src/Repository/InMemoryRepository";
 import { TTest } from "./TTest";
 
 describe("InMemoryRepository", () => {
-  const repo = new InMemoryRepository<TTest>();
+  const repo = new InMemoryRepository<TTest>(TTest.empty());
   beforeAll(() => {
-    repo.persist(new TTest());
+    repo.persist(new TTest("test", 1));
   });
 
   it("should getBy key", async () => {

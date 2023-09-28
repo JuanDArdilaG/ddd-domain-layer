@@ -1,5 +1,6 @@
 import { AggregateRoot, Identifier } from "@juandardilag/value-objects";
 import { Repository } from "./Repository";
+import { ItemNotFoundException } from "./exceptions/ItemNotFoundException";
 
 export class InMemoryRepository<T extends AggregateRoot>
   implements Repository<T>
@@ -17,13 +18,23 @@ export class InMemoryRepository<T extends AggregateRoot>
 
   async getBy(key: string, value: any): Promise<T> {
     const item = this._repo.find((i) => i[key] === value);
-    if (!item) throw new Error("Item not found");
+    if (!item)
+      throw new ItemNotFoundException(
+        this._example.constructor.name,
+        key,
+        value
+      );
     return this._example.fromPrimitives(item) as T;
   }
 
-  async get(id: Identifier<string | number>): Promise<T> {
+  async get(id: Identifier<string>): Promise<T> {
     const item = this._repo.find((i) => i.id === id);
-    if (!item) throw new Error("Item not found");
+    if (!item)
+      throw new ItemNotFoundException(
+        this._example.constructor.name,
+        "id",
+        id.valueOf()
+      );
     return this._example.fromPrimitives(item) as T;
   }
 
@@ -40,7 +51,12 @@ export class InMemoryRepository<T extends AggregateRoot>
       }
       return false;
     });
-    if (!find) throw new Error("Item not found");
+    if (!find)
+      throw new ItemNotFoundException(
+        item.constructor.name,
+        "id",
+        item.id.valueOf()
+      );
     this._repo[_id] = item.toPrimitives();
   }
 }

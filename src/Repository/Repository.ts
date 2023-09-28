@@ -12,7 +12,7 @@ export interface CreatorRepository<T extends AggregateRoot> {
 
 export interface ReaderRepository<T extends AggregateRoot> {
   getAll(): Promise<T[]>;
-  get(id: Identifier<string | number>): Promise<T>;
+  get(id: Identifier<string>): Promise<T>;
   getBy(key: string, value: string): Promise<T>;
 }
 
